@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    background-color: #DDD0C8;
+    color: #323232;
+    font-family: Candara;
+  }
+  
+  /* MENÚ SUPERIOR */
+  #menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+    width: 100%;
+  }
+  
+  #logo {
+    height: 75px;
+    width: 75px;
+    object-fit: contain;
+  }
+  
+  /* NAVEGACIÓN */
+  #nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #nav li a {
+    text-decoration: none;
+    color: #323232;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #nav li a:hover {
+    background-color: #bbb;
+  }
+  
+  /* BOTONES */
+  .btn {
+    padding: 17px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+  }
+  
+  .btn:hover {
+    letter-spacing: 3px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+  }
+  
+  .btn:active {
+    letter-spacing: 3px;
+    background-color: hsl(261deg 80% 48%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+  }
+  

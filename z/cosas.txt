@@ -1,0 +1,5 @@
+azul claro #E9F1FA
+azul brillante #00ABE4
+blanco #FFFFFF
+beige #DDD0C8
+gris oscuro #323232
