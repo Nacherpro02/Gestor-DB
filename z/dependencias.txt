@@ -1,0 +1,5 @@
+Node.js y Express
+Windows: https://nodejs.org/dist/v22.14.0/node-v22.14.0-x64.msi
+Linux: sudo apt install nodejs && sudo apt install npm
+npm init -y
+npm install express jsonwebtoken body-parser

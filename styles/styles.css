@@ -219,11 +219,18 @@ body {
   
 /* ESTRUCTURAR ELEMENTOS DEL FORM*/
 .formu {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px; /* espacio entre inputs */
+    max-width: 1000px; /* opcional: límite de ancho */
+    margin: 0 auto;    /* centra el formulario */
+    padding: 20px;
+  }
+
+  .formu button {
+    grid-column: 1 / -1; /* hace que el botón ocupe toda la fila */
+    margin-top: 20px; /* separa el botón de los inputs */
+    justify-self: center;
   }
   
 /* From Uiverse.io by liyaxu123 */ 
