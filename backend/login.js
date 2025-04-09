@@ -1,30 +1,21 @@
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
 
-  // Enviar los datos al servidor para validar
-  fetch('http://localhost:3000/api/login', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-  })
-  .then(response => response.json())
-  .then(data => {
-      if (data.token) {
-          // Almacenar el token en localStorage
-          localStorage.setItem('authToken', data.token);
-
-          // Redirigir al usuario a la página protegida
-          window.location.href = 'protectedPage.html'; // Cambia esta URL según tu aplicación
-      } else {
-          document.getElementById('errorMessage').style.display = 'block';
-      }
-  })
-  .catch(err => {
-      console.log('Error:', err);
+  const res = await fetch('http://localhost:3000/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password })
   });
+
+  const data = await res.json();
+
+  if (res.ok) {
+    localStorage.setItem('token', data.token);  // Guarda el token en localStorage
+    window.location.href = 'index.html';  // Redirige al index
+  } else {
+    alert(data.msg);  // Muestra un mensaje de error si las credenciales son incorrectas
+  }
 });

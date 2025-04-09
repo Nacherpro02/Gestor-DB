@@ -1,25 +1,23 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const authRoutes = require('./routes/auth'); // Importar las rutas de autenticación
-
-dotenv.config();
-
+const cors = require('cors');
 const app = express();
+require('dotenv').config();
 
-// Middleware para parsear JSON
+app.use(cors({
+  origin: 'http://localhost:5500', // O también puedes usar 127.0.0.1 si es tu caso
+  credentials: true
+}));
+
+
+
+
 app.use(express.json());
 
-// Conexión a la base de datos MongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Conexión a MongoDB exitosa'))
-  .catch(err => console.log('Error de conexión a MongoDB:', err));
+// Rutas
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
 
-// Usamos las rutas de autenticación
-app.use('/auth', authRoutes);
-
-// Configuración del puerto
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
+// Iniciar servidor
+app.listen(3000, () => {
+  console.log('Servidor corriendo en http://localhost:3000');
 });
