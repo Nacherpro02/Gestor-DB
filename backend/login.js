@@ -13,9 +13,9 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   const data = await res.json();
 
   if (res.ok) {
-    localStorage.setItem('token', data.token);  // Guarda el token en localStorage
-    window.location.href = 'index.html';  // Redirige al index
+    localStorage.setItem('token', data.token);
+    window.location.href = 'index.html';
   } else {
-    alert(data.msg);  // Muestra un mensaje de error si las credenciales son incorrectas
+    alert(data.msg);
   }
 });

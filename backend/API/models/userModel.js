@@ -1,6 +1,6 @@
 const db = require('../db');
 
-// Buscar usuario por nombre de usuario
+// Buscar usuario 
 const findUserByUsername = (username, callback) => {
   db.query('SELECT * FROM users WHERE name = ?', [username], callback);
 };
