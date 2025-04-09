@@ -7,14 +7,14 @@
   <title>Iniciar sesión</title>
 </head>
 <body>
+
   <script>
+  
     const token = localStorage.getItem('token');
     if (token) {
       window.location.href = 'index.html';
     }
   </script>
-  
-
 
   <h2>Iniciar Sesión</h2>
   <form id="loginForm">
@@ -27,8 +27,6 @@
     </div>
     <button type="submit">Iniciar sesión</button>
   </form>
-
-
 
   <script src="backend/login.js"></script>
 </body>

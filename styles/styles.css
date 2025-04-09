@@ -47,7 +47,21 @@ body {
   #nav li a:hover {
     background-color: #bbb;
   }
+
+  #nav li button {
+    text-decoration: none;
+    color: #323232;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+  }
   
+  #nav li button:hover {
+    background-color: #bbb;
+  }
+
   /* BOTONES */
   .btn {
     padding: 17px 40px;
@@ -221,19 +235,19 @@ body {
 .formu {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 15px; /* espacio entre inputs */
-    max-width: 1000px; /* opcional: límite de ancho */
-    margin: 0 auto;    /* centra el formulario */
+    gap: 15px;
+    max-width: 1000px; 
+    margin: 0 auto; 
     padding: 20px;
   }
 
   .formu button {
-    grid-column: 1 / -1; /* hace que el botón ocupe toda la fila */
-    margin-top: 20px; /* separa el botón de los inputs */
+    grid-column: 1 / -1;
+    margin-top: 20px;
     justify-self: center;
   }
   
-/* From Uiverse.io by liyaxu123 */ 
+
 .form-control {
     position: relative;
     margin: 20px 0 0px;
