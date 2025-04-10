@@ -9,7 +9,7 @@ router.post('/login', login);
 
 
 router.get('/protected', verifyToken, (req, res) => {
-  res.json({ msg: 'Acceso concedido, token válido' });
+  res.json({ msg: 'Valid token' });
 });
 
 module.exports = router;

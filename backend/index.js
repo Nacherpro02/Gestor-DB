@@ -16,8 +16,9 @@ fetch('http://localhost:3000/api/auth/protected', {
 })
   .then(res => res.json())
   .then(data => {
-    if (data.msg !== 'Acceso concedido, token válido') {
+    if (data.msg !== 'Valid token') {
       alert(data.msg);
+      localStorage.removeItem('token');
       window.location.href = 'login.html';
     } else {
       console.log(data); 

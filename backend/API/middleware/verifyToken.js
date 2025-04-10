@@ -12,7 +12,7 @@ const verifyToken = (req, res, next) => {
     next();
   } catch (err) {
     console.error("Error al verificar el token:", err);
-    res.status(401).json({ msg: 'Token inválido' });
+    res.status(401).json({ msg: 'Token de sesión expirado' });
   }
 };
 
