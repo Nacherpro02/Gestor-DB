@@ -30,4 +30,16 @@ const login = (req, res) => {
   });
 };
 
-module.exports = { register, login };
+
+const search = (req, res) => {
+  const searchTerm = req.params.search;
+
+  userModel.searchUser(searchTerm, (err, results) => {
+    if (err) {
+      console.error('Error en búsqueda:', err);
+      return res.status(500).json({ error: 'Error al buscar usuarios' });
+    }
+    res.json(results);
+  });
+};
+module.exports = { register, login, search };

@@ -11,4 +11,16 @@ const createUser = (username, hashedPassword, callback) => {
   db.query('INSERT INTO users (name, password) VALUES (?, ?)', [username, hashedPassword], callback);
 };
 
-module.exports = { findUserByUsername, createUser };
+const searchUser = (data, callback) => {
+  const query = `
+    SELECT name, email FROM users
+    WHERE 
+      name LIKE ? OR
+      email LIKE ?
+  `;
+  const searchValue = `%${data}%`;
+  db.query(query, [searchValue, searchValue], callback);
+};
+
+
+module.exports = { findUserByUsername, createUser, searchUser };
