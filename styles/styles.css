@@ -230,7 +230,17 @@ body {
   .button-p:active {
     transform: scale(0.95);
   }
-  
+
+
+  #search {
+    display: flex;
+    flex-direction: column; /* Esto coloca los elementos uno debajo del otro */
+    align-items: flex-start; /* Alinea los elementos al inicio de la caja */
+    gap: 1rem; /* Espacio entre los elementos */
+}
+
+
+
 /* ESTRUCTURAR ELEMENTOS DEL FORM*/
 .formu {
     display: grid;
@@ -308,3 +318,74 @@ body {
     transform: translateY(-30px);
   }
   
+   /* TABLA CLIENTES */
+
+   /* Contenedor de la tabla */
+#results {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de la tabla */
+#resultsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  overflow: hidden; /* Asegura que los bordes redondeados no se rompan */
+}
+
+/* Encabezado de la tabla */
+#resultsTable thead {
+  background-color: #D9E8D8;
+  color: #323232;
+}
+
+#resultsTable th {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+/* Filas del cuerpo de la tabla */
+#resultsTable tbody tr {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Efecto hover para las filas */
+#resultsTable tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+/* Celdas de la tabla */
+#resultsTable td {
+  padding: 12px 20px;
+  text-align: left;
+  font-size: 14px;
+  color: #323232;
+  border-top: 1px solid #ddd;
+}
+
+/* Mensaje si no se encuentran resultados */
+#resultsTable td[colspan="2"] {
+  text-align: center;
+  font-size: 16px;
+  color: #777;
+  padding: 20px;
+}
+
+/* Estilo para la tabla cuando no hay resultados */
+#resultsTable.empty tbody tr td {
+  text-align: center;
+  color: #777;
+  font-size: 18px;
+  padding: 40px 0;
+}
