@@ -7,8 +7,8 @@ const findUserByUsername = (username, callback) => {
 
 
 // Crear un nuevo usuario
-const createUser = (username, hashedPassword, callback) => {
-  db.query('INSERT INTO users (name, password) VALUES (?, ?)', [username, hashedPassword], callback);
+const createUser = (username, email, hashedPassword, callback) => {
+  db.query('INSERT INTO users (`name`, `email`, `password`) VALUES (?, ?, ?)', [username, email, hashedPassword], callback);
 };
 
 const searchUser = (data, callback) => {

@@ -3,18 +3,31 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../models/userModel');
 
 const register = (req, res) => {
-  const { username, password } = req.body;
-  
+  const { username, email, password } = req.body;
+
   userModel.findUserByUsername(username, (err, results) => {
-    if (results.length > 0) return res.status(400).json({ msg: 'Usuario ya existe' });
+    if (err) {
+      console.error('Error buscando usuario:', err);
+      return res.status(500).json({ msg: 'Error en el servidor' });
+    }
+
+    if (results.length > 0) {
+      return res.status(400).json({ msg: 'Usuario ya existe' });
+    }
 
     const hashedPassword = bcrypt.hashSync(password, 10);
-    userModel.createUser(username, hashedPassword, (err) => {
-      if (err) throw err;
+
+    userModel.createUser(username, email, hashedPassword, (err) => {
+      if (err) {
+        console.error('Error creando usuario:', err);
+        return res.status(500).json({ msg: 'Error al registrar usuario' });
+      }
+
       res.status(201).json({ msg: 'Usuario registrado' });
     });
   });
 };
+
 
 const login = (req, res) => {
   const { username, password } = req.body;
@@ -42,4 +55,5 @@ const search = (req, res) => {
     res.json(results);
   });
 };
-module.exports = { register, login, search };
+
+module.exports = { register, login, search};
