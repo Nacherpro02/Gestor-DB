@@ -14,17 +14,20 @@
         <li><a href="index.html">Inicio</a></li>
         <li><a href="addcliente.html">Añadir cliente</a></li>
         <li><a href="getcliente.html">Buscar cliente</a></li>
-        <li><a href="cusuario.html">Crear usuario</a></li>
+        <li><a href="cuser.html">Crear usuario</a></li>
         <li><button id="logoutBtn">Cerrar sesión</button></li>
       </ul>
     </nav>
   </div>
-  <h2>Registrarse</h2>
+  
   <form id="registerForm">
-    <input type="text" id="username" placeholder="Usuario" required>
-    <input type="email" id="correo" placeholder="Correo" required>
-    <input type="password" id="password" placeholder="Contraseña" required>
-    <button type="submit">Registrarse</button>
+    <div style="display: flex;flex-direction: column; align-items: center; row-gap: 10px;">
+      <h2>Registrarse</h2>
+      <input type="text" id="username" placeholder="Usuario" required>
+      <input type="email" id="correo" placeholder="Correo" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="submit">Registrarse</button>
+  </div>
   </form>
 
   <script src="backend/register.js"></script>

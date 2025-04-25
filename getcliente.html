@@ -16,15 +16,16 @@
         <li><a href="index.html">Inicio</a></li>
         <li><a href="addcliente.html">Añadir cliente</a></li>
         <li><a href="getcliente.html">Buscar cliente</a></li>
-        <li><a href="cusuario.html">Crear usuario</a></li>
+        <li><a href="cuser.html">Crear usuario</a></li>
         <li><button id="logoutBtn">Cerrar sesión</button></li>
       </ul>
     </nav>
   </div>
 
   <form class="formul" action="" method="get">
-    <h3>Buscar un cliente</h3>
-    <div>
+    
+    <div style="display: flex;flex-direction: column; align-items: center;">
+      <h3>Buscar un cliente</h3>
     <div class="group-s">
       <svg class="icon-s" aria-hidden="true" viewBox="0 0 24 24">
         <g>
@@ -32,25 +33,27 @@
         </g>
       </svg>
       <input placeholder="Search" type="search" class="input-s">
-    </div>
+    </div><br>
     <button type="submit" class="btn" id="search">Buscar</button>
   </div>
-    <div id="results">
-      <table id="resultsTable">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
 
-        </tbody>
-      </table>
-    </div>
     
   </form>
-  
+  <div id="results">
+    <table id="resultsTable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+
+  <button>Obtener informe</button>
 
   <script src="backend/getcliente.js"></script>
   <script src="backend/index.js"></script>

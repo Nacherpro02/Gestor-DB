@@ -22,5 +22,16 @@ const searchUser = (data, callback) => {
   db.query(query, [searchValue, searchValue], callback);
 };
 
+const addCliente = (data, callback) => {
+  arrData = []
+  const obj = JSON.parse(data);
+  const valores = Object.values(obj);
+  const query = `
+    INSERT INTO clientes (name, email, password) VALUES (?, ?, ?)
+  
+  `
+  db.query(query, valores, callback);
+  
+}
 
-module.exports = { findUserByUsername, createUser, searchUser };
+module.exports = { findUserByUsername, createUser, searchUser, addCliente };

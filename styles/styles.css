@@ -261,7 +261,7 @@ body {
 .form-control {
     position: relative;
     margin: 20px 0 0px;
-    width: 190px;
+    width: 200px;
   }
   
   .form-control input {
@@ -388,4 +388,89 @@ body {
   color: #777;
   font-size: 18px;
   padding: 40px 0;
+}
+
+/* */ 
+.radio-buttons {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 12px; /* Espacio uniforme entre botones */
+}
+
+.radio-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.radio-button:hover {
+  transform: scale(1.02); /* Ligero efecto al pasar el mouse */
+}
+
+.radio-button input[type="radio"] {
+  display: none;
+}
+
+.radio-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #aaa;
+  position: relative;
+  margin-right: 10px;
+  transition: border-color 0.2s ease;
+}
+
+.radio-circle::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ddd;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Colores para cada opción seleccionada */
+.radio-button:nth-of-type(1) input[type="radio"]:checked + .radio-circle::before {
+  background-color: #ff6600;
+}
+
+.radio-button:nth-of-type(2) input[type="radio"]:checked + .radio-circle::before {
+  background-color: #ffffff;
+}
+
+.radio-button:nth-of-type(3) input[type="radio"]:checked + .radio-circle::before {
+  background-color: #26be00;
+}
+
+.radio-button:nth-of-type(4) input[type="radio"]:checked + .radio-circle::before {
+  background-color: #5bccf3;
+}
+
+/* Animación al seleccionar */
+.radio-button input[type="radio"]:checked + .radio-circle::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.radio-label {
+  font-size: 16px;
+  font-weight: bold;
+  user-select: none;
+}
+
+/* Hover con color más suave */
+.radio-button:hover .radio-circle {
+  border-color: #888;
+}
+
+/* Solo cambia el color si está seleccionado y en hover */
+.radio-button:hover input[type="radio"]:checked + .radio-circle::before {
+  filter: brightness(0.85);
 }
