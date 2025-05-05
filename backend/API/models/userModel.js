@@ -34,4 +34,24 @@ const addCliente = (data, callback) => {
   
 }
 
-module.exports = { findUserByUsername, createUser, searchUser, addCliente };
+const findUserByMail = (mail, callback) => {
+  db.query('SELECT * FROM users WHERE email = ?', [mail], callback);
+}
+
+const saveResetCode = (email, code, expires, callback) => {
+  db.query(
+    "UPDATE users SET reset_code = ?, reset_code_expires = ? WHERE email = ?",
+    [code, expires, email],
+    callback
+  );
+}
+
+const updatePassword = (email, hashedPassword, callback) => {
+  db.query(
+    "UPDATE users SET password = ?, reset_code = NULL, reset_code_expires = NULL WHERE email = ?",
+    [hashedPassword, email],
+    callback
+  );
+}
+
+module.exports = { findUserByUsername, createUser, searchUser, addCliente, findUserByMail, saveResetCode, updatePassword };

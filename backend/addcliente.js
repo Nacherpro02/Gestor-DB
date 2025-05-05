@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ...data2,
       };
   
-      // Enviar a tu API
       fetch('https://localhost:3000/api/auth/', {
         method: 'POST',
         headers: {

@@ -330,17 +330,17 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo de la tabla */
+
 #resultsTable {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   background-color: #f8f8f8;
   border-radius: 8px;
-  overflow: hidden; /* Asegura que los bordes redondeados no se rompan */
+  overflow: hidden; 
 }
 
-/* Encabezado de la tabla */
+
 #resultsTable thead {
   background-color: #D9E8D8;
   color: #323232;
@@ -354,18 +354,18 @@ body {
   border: 1px solid #ddd;
 }
 
-/* Filas del cuerpo de la tabla */
+
 #resultsTable tbody tr {
   background-color: #fff;
   border-bottom: 1px solid #ddd;
 }
 
-/* Efecto hover para las filas */
+
 #resultsTable tbody tr:hover {
   background-color: #f0f0f0;
 }
 
-/* Celdas de la tabla */
+
 #resultsTable td {
   padding: 12px 20px;
   text-align: left;
@@ -374,7 +374,7 @@ body {
   border-top: 1px solid #ddd;
 }
 
-/* Mensaje si no se encuentran resultados */
+
 #resultsTable td[colspan="2"] {
   text-align: center;
   font-size: 16px;
@@ -382,7 +382,7 @@ body {
   padding: 20px;
 }
 
-/* Estilo para la tabla cuando no hay resultados */
+
 #resultsTable.empty tbody tr td {
   text-align: center;
   color: #777;
@@ -395,7 +395,7 @@ body {
   display: flex;
   flex-direction: column;
   color: white;
-  gap: 12px; /* Espacio uniforme entre botones */
+  gap: 12px; 
 }
 
 .radio-button {
@@ -406,7 +406,7 @@ body {
 }
 
 .radio-button:hover {
-  transform: scale(1.02); /* Ligero efecto al pasar el mouse */
+  transform: scale(1.02); 
 }
 
 .radio-button input[type="radio"] {
@@ -454,7 +454,7 @@ body {
   background-color: #5bccf3;
 }
 
-/* Animación al seleccionar */
+
 .radio-button input[type="radio"]:checked + .radio-circle::before {
   transform: translate(-50%, -50%) scale(1);
 }
@@ -465,12 +465,94 @@ body {
   user-select: none;
 }
 
-/* Hover con color más suave */
+
 .radio-button:hover .radio-circle {
   border-color: #888;
 }
 
-/* Solo cambia el color si está seleccionado y en hover */
+
 .radio-button:hover input[type="radio"]:checked + .radio-circle::before {
   filter: brightness(0.85);
+}
+
+
+/* From Uiverse.io by bociKond */ 
+#loginForm {
+  --bg-light: #efefef;
+  --bg-dark: #707070;
+  --clr: #58bc82;
+  --clr-alpha: #9c9c9c60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+#loginForm .input-span {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#loginForm input[type="text"],
+#loginForm input[type="password"] {
+  border-radius: 0.5rem;
+  padding: 1rem 0.75rem;
+  width: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--clr-alpha);
+  outline: 2px solid var(--bg-dark);
+}
+
+#loginForm input[type="text"]:focus,
+#loginForm input[type="password"]:focus {
+  outline: 2px solid var(--clr);
+}
+
+.label {
+  align-self: flex-start;
+  color: var(--clr);
+  font-weight: 600;
+}
+
+#loginForm .submit {
+  padding: 1rem 0.75rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 3rem;
+  background-color: var(--bg-dark);
+  color: var(--bg-light);
+  border: none;
+  cursor: pointer;
+  transition: all 300ms;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+#loginForm .submit:hover {
+  background-color: var(--clr);
+  color: var(--bg-dark);
+}
+
+.span {
+  text-decoration: none;
+  color: var(--bg-dark);
+}
+
+.span a {
+  color: var(--clr);
+}
+
+#login-form-cont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

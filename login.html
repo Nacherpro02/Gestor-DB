@@ -8,26 +8,52 @@
 </head>
 <body>
 
-  <script>
+ <script>
   
     const token = localStorage.getItem('token');
     if (token) {
       window.location.href = 'index.html';
     }
+ 
+
   </script>
 
-  <h2>Iniciar Sesión</h2>
-  <form id="loginForm">
-    <input type="text" id="username" placeholder="Usuario" required>
-    <div class="group-p">
-      <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-p">
-      <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linejoin="round" stroke-linecap="round"></path>
-    </svg>
-    <input class="input-p" id="password" type="password" placeholder="Contraseña">
-    </div>
-    <button type="submit">Iniciar sesión</button>
-  </form>
+  <div id="login-form-cont">
 
+  <form id="loginForm">
+    <h2>Iniciar Sesión</h2>
+    <span class="input-span">
+      <label for="text" class="label">Nombre de usuario</label>
+      <input type="text" name="username" id="username"
+    /></span>
+    <span class="input-span" style="position: relative;">
+      <label for="password" class="label">Contraseña</label>
+      <input type="password" name="password" id="password" />
+      <img 
+        src="styles/assets/eye-closed.svg" 
+        id="togglePassword" 
+        style="position: absolute; right: 0px; top: 40px; width: 20px; cursor: pointer;" />
+    </span>
+    
+    <span class="span"><a href="forgot.html">Olvidaste la contraseña?</a></span>
+    <input class="submit" type="submit" value="Iniciar Sesión" />
+    <span class="span">No tienes cuenta? <a href="#">Contacta al Admin</a></span>
+  </form>
+</div>
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById("password");
+    const icon = document.getElementById("togglePassword");
+
+    icon.addEventListener("click", function () {
+      const isPassword = input.type === "password";
+      input.type = isPassword ? "text" : "password";
+      icon.src = isPassword 
+        ? "styles/assets/eye-open.svg" 
+        : "styles/assets/eye-closed.svg";
+    });
+  });
+  </script>
   <script src="backend/login.js"></script>
 </body>
 </html>

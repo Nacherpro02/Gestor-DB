@@ -1,4 +1,6 @@
 const bcrypt = require('bcryptjs');
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/userModel');
 
@@ -66,4 +68,70 @@ const addcliente = (req, res) => {
   })
 }
 
-module.exports = { register, login, search, addcliente};
+const getCode = (req, res) => {
+  const { destination } = req.body;
+  const email = process.env.MAIL_MAIL;
+  const email_pass = process.env.MAIL_PASS;
+
+  userModel.findUserByMail(destination, async (err, results) => {
+    if (err || !results.length) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    const code = crypto.randomBytes(3).toString("hex").slice(0, 6);
+    const expires = new Date(Date.now() + 10 * 60000);
+
+    // Guarda el código y expiración
+    userModel.saveResetCode(destination, code, expires, (err) => {
+      if (err) return res.status(500).json({ error: "Error guardando código" });
+
+      // Enviar correo
+      const transporter = require("nodemailer").createTransport({
+        service: "gmail",
+        auth: { user: email, pass: email_pass },
+      });
+
+      const mailOptions = {
+        from: email,
+        to: destination,
+        subject: "Código para restablecer contraseña",
+        text: `Se ha solicitado un restablecimiento de tu contraseña.
+        Tu código es: ${code}`,
+      };
+
+      transporter.sendMail(mailOptions, (error) => {
+        if (error) return res.status(500).json({ error: "Error enviando correo" });
+        return res.status(200).json({ message: "Código enviado" });
+      });
+    });
+  });
+};
+
+const verifyCode = (req, res) => {
+  const { email, code } = req.body;
+
+  userModel.findUserByMail(email, (err, results) => {
+    if (err || !results.length) return res.status(404).json({ error: "Usuario no encontrado" });
+
+    const user = results[0];
+    const now = new Date();
+
+    if (user.reset_code !== code || new Date(user.reset_code_expires) < now) {
+      return res.status(400).json({ error: "Código incorrecto o expirado" });
+    }
+
+    res.status(200).json({ message: "Código verificado" });
+  });
+};
+
+const resetPassword = async (req, res) => {
+  const { email, newPass } = req.body;
+  const hashed = await bcrypt.hash(newPass, 10);
+
+  userModel.updatePassword(email, hashed, (err) => {
+    if (err) return res.status(500).json({ error: "Error actualizando contraseña" });
+    res.status(200).json({ message: "Contraseña actualizada" });
+  });
+};
+
+module.exports = { register, login, search, addcliente, getCode, verifyCode, resetPassword};

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Recuperar cuenta</title>
+</head>
+<body>
+    <div id="menu"> 
+        <img id="logo" src="styles/assets/logo-2.jpg" alt="logo">
+        <nav id="nav">
+          <ul>
+            <li><a href="login.html">Iniciar sesión</a></li>
+          </ul>
+        </nav>
+      </div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+    <form id="formpass" style="display: flex;flex-direction: column; align-items: center; gap: 20px;">
+      <input type="email" id="destination" placeholder="Tu correo" required />
+      <button type="submit">Enviar código</button>
+    </form>
+  
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <h3>Si el correo esta en la base de datos se te enviara un correo</h3>
+    </div>
+
+    <script src="backend/forgot.js"></script>
+
+</body>
+</html>

@@ -8,3 +8,4 @@ npm init -y
 npm install express mysql2 bcryptjs jsonwebtoken dotenv
 
 npm install cors
+npm install nodemailer

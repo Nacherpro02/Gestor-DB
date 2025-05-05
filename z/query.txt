@@ -16,4 +16,15 @@ CREATE TABLE clientes(
     vivienda VARCHAR(255),
     situacion VARCHAR(255),
     profesion VARCHAR(255),
+    empresa VARCHAR(255),
+    direccion-e VARCHAR(255),
+    phone-e INT,
+    antiguedad VARCHAR(255),
+    ingreso-neto-men INT,
+    nom-ape VARCHAR(255),
+    nif VARCHAR(255),
+    f-nacim-e DATE,
+    direccion-e-2 VARCHAR(255),
+    
+
 ) COMMENT '';
