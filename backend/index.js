@@ -21,7 +21,7 @@ fetch('http://localhost:3000/api/auth/protected', {
       localStorage.removeItem('token');
       window.location.href = 'login.html';
     } else {
-      console.log(data); 
+      //console.log(data);
     }
   })
   .catch(() => {

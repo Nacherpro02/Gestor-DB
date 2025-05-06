@@ -312,6 +312,38 @@ body {
     caret-color: auto;
   }
 
+  #antiguedad {
+    color: transparent;
+    caret-color: transparent;
+    transition: color 0.3s ease 0.3s, caret-color 0.3s ease 0.3s;
+  }
+
+  #antiguedad:focus {
+    color: initial;
+    caret-color: auto;
+  }
+  
+  #antiguedad:valid {
+    color: initial;
+    caret-color: auto;
+  }
+
+  #f-nacim-e {
+    color: transparent;
+    caret-color: transparent;
+    transition: color 0.3s ease 0.3s, caret-color 0.3s ease 0.3s;
+  }
+
+  #f-nacim-e:focus {
+    color: initial;
+    caret-color: auto;
+  }
+  
+  #f-nacim-e:valid {
+    color: initial;
+    caret-color: auto;
+  }
+
   .form-control input:focus+label span,
   .form-control input:valid+label span {
     color: #00ABE4;
@@ -555,4 +587,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.countdown-timer {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.countdown-timer.expired {
+  color: #888;
 }

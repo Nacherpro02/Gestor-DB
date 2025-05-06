@@ -54,4 +54,4 @@ const updatePassword = (email, hashedPassword, callback) => {
   );
 }
 
-module.exports = { findUserByUsername, createUser, searchUser, addCliente, findUserByMail, saveResetCode, updatePassword };
+module.exports = { findUserByUsername, createUser, searchUser, addCliente, findUserByMail, saveResetCode, updatePassword};

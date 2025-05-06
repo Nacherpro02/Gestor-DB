@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { register, login, search, addcliente, getCode, verifyCode, resetPassword } = require('../controllers/authController');
+const { register, login, search, addcliente, getCode, verifyCode, resetPassword, existCode } = require('../controllers/authController');
 const verifyToken = require('../middleware/verifyToken');
 
 
@@ -11,6 +11,7 @@ router.post('/addcliente', addcliente)
 router.post('/getcode', getCode)
 router.post('/verifycode', verifyCode)
 router.post('/resetpassword', resetPassword)
+router.post('/existcode', existCode)
 router.get('/protected', verifyToken, (req, res) => {
   res.json({ msg: 'Valid token' });
 });

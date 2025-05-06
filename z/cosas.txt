@@ -4,4 +4,9 @@ blanco #FFFFFF
 beige #DDD0C8
 gris oscuro #323232
 simbolo grado °
+
 <script src="backend/main.js"></script>
+
+<button onclick="console.log('HOLA')">hola</button>
+<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>

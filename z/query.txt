@@ -20,11 +20,11 @@ CREATE TABLE clientes(
     direccion-e VARCHAR(255),
     phone-e INT,
     antiguedad VARCHAR(255),
-    ingreso-neto-men INT,
-    nom-ape VARCHAR(255),
+    ingreso-neto-men FLOAT,
+    nom-ape-2 VARCHAR(255),
     nif VARCHAR(255),
     f-nacim-e DATE,
-    direccion-e-2 VARCHAR(255),
+    direccion-2 VARCHAR(255),
     
 
 ) COMMENT '';

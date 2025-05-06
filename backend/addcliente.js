@@ -4,17 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const form2 = document.getElementById('form2');
   
     submitBtn.addEventListener('click', (event) => {
-      event.preventDefault(); // Evita que recargue la página
+      event.preventDefault();
   
-      // Obtener datos del form1
+      // Datos form1
       const formData1 = new FormData(form1);
       const data1 = Object.fromEntries(formData1.entries());
   
-      // Obtener datos del form2
+      // Datos form2
       const formData2 = new FormData(form2);
       const data2 = Object.fromEntries(formData2.entries());
   
-      // Obtener valores de inputs tipo radio
+      // Valores inputs radio
       const vivienda = document.querySelector('input[name="vivienda"]:checked');
       const situacion = document.querySelector('input[name="situacion"]:checked');
   

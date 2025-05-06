@@ -79,7 +79,7 @@ const getCode = (req, res) => {
     }
 
     const code = crypto.randomBytes(3).toString("hex").slice(0, 6);
-    const expires = new Date(Date.now() + 10 * 60000);
+    const expires = new Date(Date.now() + 5 * 60000);
 
     // Guarda el código y expiración
     userModel.saveResetCode(destination, code, expires, (err) => {
@@ -96,7 +96,8 @@ const getCode = (req, res) => {
         to: destination,
         subject: "Código para restablecer contraseña",
         text: `Se ha solicitado un restablecimiento de tu contraseña.
-        Tu código es: ${code}`,
+
+Tu código es: ${code}`,
       };
 
       transporter.sendMail(mailOptions, (error) => {
@@ -134,4 +135,26 @@ const resetPassword = async (req, res) => {
   });
 };
 
-module.exports = { register, login, search, addcliente, getCode, verifyCode, resetPassword};
+const existCode = async (req, res) => {
+  const { email } = req.body;
+  
+  userModel.findUserByMail(email, (err, results) => {
+    if (err) {
+      return res.status(500).json({error: "Ha habido un error"})
+    }
+
+    const user = results[0]
+    const now = new Date();
+    
+    console.log(user.reset_code_expires)
+    if (results.length <= 0 || new Date(user.reset_code_expires) < now){
+      return res.status(404).json({msg: "No existe"})
+    }
+    
+
+    res.status(200).json({msg: "Existe"})
+    
+  });
+};
+
+module.exports = { register, login, search, addcliente, getCode, verifyCode, resetPassword, existCode};
