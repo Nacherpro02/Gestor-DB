@@ -146,7 +146,6 @@ const existCode = async (req, res) => {
     const user = results[0]
     const now = new Date();
     
-    console.log(user.reset_code_expires)
     if (results.length <= 0 || new Date(user.reset_code_expires) < now){
       return res.status(404).json({msg: "No existe"})
     }
@@ -157,4 +156,23 @@ const existCode = async (req, res) => {
   });
 };
 
-module.exports = { register, login, search, addcliente, getCode, verifyCode, resetPassword, existCode};
+const getTime = async (req, res) => {
+  const { email } = req.body;
+  
+  userModel.findUserByMail(email, (err, results) => {
+    if (err) {
+      return res.status(500).json({error: "Ha habido un error"})
+    }
+
+    const user = results[0]
+    const now = new Date();
+    
+    const time_left = Math.floor((new Date(user.reset_code_expires) - now)/1000)
+    
+
+    res.status(200).json({time: time_left})
+    
+})};
+
+
+module.exports = { register, login, search, addcliente, getCode, verifyCode, resetPassword, existCode, getTime };
