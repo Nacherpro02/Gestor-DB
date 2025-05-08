@@ -5,6 +5,8 @@ beige #DDD0C8
 gris oscuro #323232
 simbolo grado °
 
+6cd90bb43ca30719ef6734709185dd83f658043b48d18abfbfe2b76272b8249b
+
 <script src="backend/main.js"></script>
 
 <button onclick="console.log('HOLA')">hola</button>

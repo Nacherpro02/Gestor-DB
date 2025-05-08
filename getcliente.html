@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -10,7 +10,6 @@
 
   <div id="menu"> 
     <img id="logo" src="styles/assets/logo.png" alt="logo">
-
     <nav id="nav">
       <ul>
         <li><a href="index.html">Inicio</a></li>
@@ -22,40 +21,82 @@
     </nav>
   </div>
 
-  <form class="formul" action="" method="get">
-    
-    <div style="display: flex;flex-direction: column; align-items: center;">
-      <h3>Buscar un cliente</h3>
-    <div class="group-s">
-      <svg class="icon-s" aria-hidden="true" viewBox="0 0 24 24">
-        <g>
-          <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-        </g>
-      </svg>
-      <input placeholder="Search" type="search" class="input-s">
-    </div><br>
-    <button type="submit" class="btn" id="search">Buscar</button>
-  </div>
-
-    
+  <form class="formul" id="searchForm">
+    <h3 style="text-align: center;">Buscar un cliente</h3>
+    <div class="search-fields">
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+      <input type="text" id="localidad" name="localidad" placeholder="Localidad">
+      <input type="text" id="provincia" name="provincia" placeholder="Provincia">
+      <input type="text" id="telefono1" name="telefono1" placeholder="Teléfono">
+      <input type="text" id="nif" name="nif" placeholder="NIF">
+    </div>
+    <br>
+    <div >
+      <button type="submit" class="btn" id="search">Buscar</button>
+    </div>
   </form>
-  <div id="results">
-    <table id="resultsTable">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
 
-      </tbody>
-    </table>
+  <div id="results" style="padding: 20px;">
+    <!-- Tabla Cliente -->
+    <div class="table-section">
+      <h4>Datos del Cliente</h4>
+      <table id="clienteTable">
+        <thead>
+          <tr>
+            <th>Nombre</th><th>Apellido 1</th><th>Apellido 2</th><th>NIF</th><th>Teléfono 1</th><th>Teléfono 2</th><th>Localidad</th><th>Provincia</th><th>Fecha de Nacimiento</th><th>Email</th><th>Fecha de Registro</th><th>Estado</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Tabla Contrato -->
+    <div class="table-section">
+      <h4>Contrato</h4>
+      <table id="contratoTable">
+        <thead>
+          <tr>
+            <th>Número</th><th>Código Agente</th><th>Fecha</th><th>Total Financiado</th><th>Total Incluido</th><th>Observaciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Tabla Artículos -->
+    <div class="table-section">
+      <h4>Artículos</h4>
+      <table id="articulosTable">
+        <thead>
+          <tr><th>Descripción</th><th>Precio</th><th>Cantidad</th><th>Fecha de Entrega</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Tabla Pagos -->
+    <div class="table-section">
+      <h4>Pagos</h4>
+      <table id="pagosTable">
+        <thead>
+          <tr><th>Forma de Pago</th><th>Cantidad</th><th>Fecha de Pago</th><th>Observaciones</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Tabla Firmas -->
+    <div class="table-section">
+      <h4>Firmas</h4>
+      <table id="firmasTable">
+        <thead>
+          <tr><th>Firma Cliente</th><th>Firma Agente</th><th>Firma Repartidor</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
-
-  <button>Obtener informe</button>
 
   <script src="backend/getcliente.js"></script>
-  <script src="backend/index.js"></script>
 </body>
 </html>

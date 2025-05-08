@@ -296,29 +296,29 @@ body {
     transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
   
-  #f-nacim {
+  #fecha_nacimiento {
     color: transparent;
     caret-color: transparent;
     transition: color 0.3s ease 0.3s, caret-color 0.3s ease 0.3s;
   }
 
-  #f-nacim:focus {
+  #fecha_nacimiento:focus {
     color: initial;
     caret-color: auto;
   }
   
-  #f-nacim:valid {
+  #fecha_nacimiento:valid {
     color: initial;
     caret-color: auto;
   }
 
-  #antiguedad {
+  #antiguedad_laboral {
     color: transparent;
     caret-color: transparent;
     transition: color 0.3s ease 0.3s, caret-color 0.3s ease 0.3s;
   }
 
-  #antiguedad:focus {
+  #antiguedad_laboral:focus {
     color: initial;
     caret-color: auto;
   }
@@ -328,18 +328,18 @@ body {
     caret-color: auto;
   }
 
-  #f-nacim-e {
+  #fecha_nacimiento_e {
     color: transparent;
     caret-color: transparent;
     transition: color 0.3s ease 0.3s, caret-color 0.3s ease 0.3s;
   }
 
-  #f-nacim-e:focus {
+  #fecha_nacimiento_e:focus {
     color: initial;
     caret-color: auto;
   }
   
-  #f-nacim-e:valid {
+  #fecha_nacimiento_e:valid {
     color: initial;
     caret-color: auto;
   }
@@ -354,7 +354,7 @@ body {
 
    /* Contenedor de la tabla */
 #results {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 30px auto;
   padding: 20px;
   background-color: #fff;
@@ -362,65 +362,101 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-#resultsTable {
+.table-section {
+  display: flex;
+  flex-wrap: wrap;  /* Permite que las celdas se muevan a la siguiente fila cuando no haya suficiente espacio */
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   background-color: #f8f8f8;
   border-radius: 8px;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
-
-#resultsTable thead {
-  background-color: #D9E8D8;
-  color: #323232;
+.table-section thead {
+  display: none; /* Ocultamos los encabezados en pantallas pequeñas para mostrar un formato más flexible */
 }
 
-#resultsTable th {
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: left;
-  border: 1px solid #ddd;
-}
-
-
-#resultsTable tbody tr {
-  background-color: #fff;
+.table-section .table-row {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;  /* Permite que las celdas se reorganicen cuando no quepan */
   border-bottom: 1px solid #ddd;
 }
 
+.table-section .table-cell {
+  flex: 1 1 150px; /* Asegura que las celdas sean flexibles y se ajusten a su contenedor */
+  padding: 12px 20px;
+  text-align: left;
+  font-size: 16px;
+  color: #323232;
+  border-top: 1px solid #ddd;
+  box-sizing: border-box;
+  min-width: 150px;  /* Limita el tamaño mínimo de las celdas */
+}
 
-#resultsTable tbody tr:hover {
+.table-section .table-cell:nth-child(odd) {
+  background-color: #f0f0f0; /* Alterna los colores de las celdas */
+}
+
+.table-section .table-cell:nth-child(even) {
+  background-color: #fff;
+}
+
+.table-section .table-cell::before {
+  content: attr(data-label); /* Usamos el atributo 'data-label' para mostrar el título de cada celda */
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.table-section tbody tr {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.table-section tbody tr:hover {
   background-color: #f0f0f0;
 }
 
-
-#resultsTable td {
-  padding: 12px 20px;
-  text-align: left;
-  font-size: 14px;
-  color: #323232;
-  border-top: 1px solid #ddd;
-}
-
-
-#resultsTable td[colspan="2"] {
-  text-align: center;
-  font-size: 16px;
-  color: #777;
-  padding: 20px;
-}
-
-
-#resultsTable.empty tbody tr td {
+/* Estilo para cuando la tabla no tenga resultados */
+.table-section.empty tbody tr td {
   text-align: center;
   color: #777;
   font-size: 18px;
   padding: 40px 0;
 }
+
+/* Hacer la tabla más accesible en pantallas pequeñas */
+@media (max-width: 768px) {
+  .table-section {
+    display: block;
+  }
+
+  .table-section thead {
+    display: none; /* Ocultar encabezados en pantallas pequeñas */
+  }
+
+  .table-section .table-row {
+    display: block; /* Cada fila es un bloque */
+    width: 100%;
+  }
+
+  .table-section .table-cell {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0;
+  }
+
+  .table-section .table-cell::before {
+    display: block;
+    content: attr(data-label); /* Mostrar los datos como un título en pantallas pequeñas */
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+}
+
 
 /* */ 
 .radio-buttons {

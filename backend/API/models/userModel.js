@@ -54,4 +54,8 @@ const updatePassword = (email, hashedPassword, callback) => {
   );
 }
 
-module.exports = { findUserByUsername, createUser, searchUser, addCliente, findUserByMail, saveResetCode, updatePassword};
+const searchWithJoin = (query, params, callback) =>{
+  db.query(query, params, callback)
+}
+
+module.exports = { searchWithJoin, findUserByUsername, createUser, searchUser, addCliente, findUserByMail, saveResetCode, updatePassword};

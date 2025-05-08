@@ -174,5 +174,63 @@ const getTime = async (req, res) => {
     
 })};
 
+const searchAllData = (req, res) => {
+  const { nombre, localidad, provincia, telefono1, nif } = req.body;  // Cambiar "dni" a "nif"
+  console.log(nombre,localidad, provincia, telefono1, nif)
+  // Creamos una consulta dinámica con JOIN para obtener datos de varias tablas
+  let query = `
+    SELECT 
+      clientes.*, 
+      contratos.*, 
+      articulos.*, 
+      pagos.*, 
+      firmas.*
+    FROM clientes
+    LEFT JOIN contratos ON contratos.cliente_id = clientes.id
+    LEFT JOIN articulos ON articulos.contrato_id = contratos.id
+    LEFT JOIN pagos ON pagos.contrato_id = contratos.id
+    LEFT JOIN firmas ON firmas.contrato_id = contratos.id
+    WHERE 1=1
+  `;
+  
+  let params = [];
 
-module.exports = { register, login, search, addcliente, getCode, verifyCode, resetPassword, existCode, getTime };
+  // Aplicamos filtros basados en los parámetros proporcionados
+  if (nombre) {
+    query += ' AND clientes.nombre LIKE ?';
+    params.push(`%${nombre}%`);
+  }
+
+  if (localidad) {
+    query += ' AND clientes.localidad LIKE ?';
+    params.push(`%${localidad}%`);
+  }
+
+  if (provincia) {
+    query += ' AND clientes.provincia LIKE ?';  // Aquí usamos "provincia"
+    params.push(`%${provincia}%`);
+  }
+
+  if (telefono1) {
+    query += ' AND clientes.telefono1 LIKE ?';
+    params.push(`%${telefono1}%`);
+  }
+
+  if (nif) {  // Cambiar "dni" a "nif"
+    query += ' AND clientes.nif LIKE ?';
+    params.push(`%${nif}%`);
+  }
+  console.log(query)
+  console.log(params)
+  // Ejecutar la consulta en el modelo
+  userModel.searchWithJoin(query, params, (err, results) => {
+    console.log(results)
+    if (err) {
+      console.error('Error buscando datos relacionados:', err);
+      return res.status(500).json({ error: 'Error al buscar datos' });
+    }
+    res.json(results); // Devuelve todos los datos relacionados en un único objeto
+  });
+};
+
+module.exports = { searchAllData, register, login, search, addcliente, getCode, verifyCode, resetPassword, existCode, getTime };

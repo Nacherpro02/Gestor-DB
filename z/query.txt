@@ -25,6 +25,16 @@ CREATE TABLE clientes(
     nif VARCHAR(255),
     f-nacim-e DATE,
     direccion-2 VARCHAR(255),
+    ,
+    ovservaciones VARCHAR(255),
+    entrada FLOAT,
+    mensualidades VARCHAR(255),
+    cuotas VARCHAR(255),
+    total_a_financiar VARCHAR(255),
+    total_iva VARCHAR(255),
+    firma_agente VARCHAR(255),
+    firma_repartidor VARCHAR(255),
+    firma_cliente VARCHAR(255),
     
 
 ) COMMENT '';
