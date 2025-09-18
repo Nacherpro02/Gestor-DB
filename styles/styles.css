@@ -558,6 +558,19 @@ body {
   max-width: 300px;
 }
 
+#registerForm {
+  --bg-light: #efefef;
+  --bg-dark: #707070;
+  --clr: #58bc82;
+  --clr-alpha: #9c9c9c60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+
 #loginForm .input-span {
   width: 100%;
   display: flex;
@@ -565,8 +578,16 @@ body {
   gap: 0.5rem;
 }
 
+#registerForm .input-span {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 #loginForm input[type="text"],
-#loginForm input[type="password"] {
+#loginForm input[type="password"],
+#loginForm input[type="email"] {
   border-radius: 0.5rem;
   padding: 1rem 0.75rem;
   width: 100%;
@@ -578,8 +599,30 @@ body {
   outline: 2px solid var(--bg-dark);
 }
 
+#registerForm input[type="text"],
+#registerForm input[type="password"],
+#registerForm input[type="email"] {
+  border-radius: 0.5rem;
+  padding: 1rem 0.75rem;
+  width: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--clr-alpha);
+  outline: 2px solid var(--bg-dark);
+}
+
+
 #loginForm input[type="text"]:focus,
-#loginForm input[type="password"]:focus {
+#loginForm input[type="password"]:focus,
+#loginForm input[type="email"]:focus {
+  outline: 2px solid var(--clr);
+}
+
+#registerForm input[type="text"]:focus,
+#registerForm input[type="password"]:focus,
+#registerForm input[type="email"]:focus {
   outline: 2px solid var(--clr);
 }
 
@@ -605,7 +648,28 @@ body {
   font-size: 0.9rem;
 }
 
+#registerForm .submit {
+  padding: 1rem 0.75rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 3rem;
+  background-color: var(--bg-dark);
+  color: var(--bg-light);
+  border: none;
+  cursor: pointer;
+  transition: all 300ms;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
 #loginForm .submit:hover {
+  background-color: var(--clr);
+  color: var(--bg-dark);
+}
+
+#registerForm .submit:hover {
   background-color: var(--clr);
   color: var(--bg-dark);
 }
@@ -620,6 +684,12 @@ body {
 }
 
 #login-form-cont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#register-form-cont{
   display: flex;
   align-items: center;
   justify-content: center;

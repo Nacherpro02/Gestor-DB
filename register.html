@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css" />
+    <title>Registrar cuenta</title>
+</head>
+<body>
+      <div id="menu"> 
+    <img id="logo" src="styles/assets/logo.png" alt="logo">
+
+    <nav id="nav">
+      <ul>
+        <li><a href="index.html">Atras</a></li>
+      </ul>
+    </nav>
+  </div>
+    <div id="register-form-cont">
+
+  <form id="registerForm">
+    <h2>Registrar cuenta</h2>
+    <span class="input-span">
+      <label for="text" class="label">Nombre de usuario</label>
+      <input type="text" name="username" id="username"
+    /></span>
+    <span class="input-span">
+      <label for="text" class="label">Correo</label>
+      <input type="email" name="email" id="correo"
+    /></span>
+    <span class="input-span" style="position: relative;">
+      <label for="password" class="label">Contraseña</label>
+      <input type="password" name="password" id="password" />
+      <img 
+        src="styles/assets/eye-closed.svg" 
+        id="togglePassword" 
+        style="position: absolute; right: 0px; top: 40px; width: 20px; cursor: pointer;" />
+    </span>
+        <span class="input-span" style="position: relative;">
+      <label for="password" class="label">Confirmar contraseña</label>
+      <input type="password" name="password2" id="password2" />
+      <img 
+        src="styles/assets/eye-closed.svg" 
+        id="togglePassword" 
+        style="position: absolute; right: 0px; top: 40px; width: 20px; cursor: pointer;" />
+    </span>
+    <span class="span"><a href="forgot.html">Olvidaste la contraseña?</a></span>
+    <input class="submit" type="submit" value="Iniciar Sesión" />
+    <span class="span">No tienes cuenta? <a href="mailto:nacheruddin22@gmail.com?subject=Contacto%20con%20el%20administrador&body=Hola,%0D%0A%0D%0ANecesito%20crear%20una%20cuenta%20para%20el%20gestor%20de%20base%20de%20datos%20hecho%20por%20Nacher%0D%0A%0D%0AMis%20datos%20son:%0D%0AUsuario:%20%0D%0AContraseña:%20%0D%0A%0D%0AUn%20saludo%20%3A%29">Contacta al Admin</a></span>
+  </form>
+</div>
+
+<script src="backend/register.js"></script>
+</body>
+</html>
