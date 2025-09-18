@@ -5,8 +5,8 @@ A **Database Manager** built with **Node.js, Express, Vanilla JavaScript, HTML, 
 ---
 
 ## ✨ Features
-- 📌 Fast and secure database connection  
-- 🔍 Custom SQL queries  
+- 📌 Database connection  
+- 🔍 Usage of MYSQL queries 
 - 🛠️ CRUD operations (Create, Read, Update, Delete)  
 - 📊 Table and record visualization  
 - ⚡ Simple and clean user interface  
@@ -16,7 +16,7 @@ A **Database Manager** built with **Node.js, Express, Vanilla JavaScript, HTML, 
 ## 🛠️ Tech Stack
 - **Backend:** Node.js + Express  
 - **Frontend:** Vanilla JavaScript, HTML, CSS  
-- **Database:** [Your Database: MySQL, PostgreSQL, SQLite...]  
+- **Database:** MySQL  
 
 ---
 
@@ -25,8 +25,8 @@ A **Database Manager** built with **Node.js, Express, Vanilla JavaScript, HTML, 
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/database-manager.git
-cd database-manager
+git clone https://github.com/Nacherpro02/Gestor-DB.git
+cd Gestor-DB
 npm install
 # (If you use nodemon for development)
 npm install --save-dev nodemon
@@ -34,7 +34,7 @@ npm install --save-dev nodemon
 Install dependencies:
 ```bash
 npm install
-# Configure your database connection inside the db.js file or create a .env file with your own credentials.
+# Configure your database connection inside the db.js file or create a .env file with your own credentials in Gestor-DB/backend/API/.
 ```
 
 ## ▶️ Usage
