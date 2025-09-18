@@ -31,3 +31,14 @@ npm install
 # (If you use nodemon for development)
 npm install --save-dev nodemon
 ```
+Install dependencies:
+```bash
+npm install
+# Configure your database connection inside the db.js file or create a .env file with your own credentials.
+```
+
+## ▶️ Usage
+Start the server:
+```bash
+npm start
+```
