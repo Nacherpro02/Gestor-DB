@@ -4,6 +4,89 @@ const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/userModel');
 
+
+function agruparPorUsuarioYContrato(data) {
+  const usuariosMap = {};
+
+  data.forEach(item => {
+    const clienteId = item.cliente_id;
+    const numeroContrato = item.numero_contrato;
+
+    // Crear el usuario si no existe
+    if (!usuariosMap[clienteId]) {
+      usuariosMap[clienteId] = {
+        cliente_id: clienteId,
+        datos_usuario: {
+          nombre: item.nombre,
+          apellido_1: item.apellido_1,
+          apellido_2: item.apellido_2,
+          nie: item.nie,
+          fecha_nacimiento: item.fecha_nacimiento,
+          estado_civil: item.estado_civil,
+          numero_hijos: item.numero_hijos,
+          direccion: item.direccion,
+          localidad: item.localidad,
+          codigo_postal: item.codigo_postal,
+          provincia: item.provincia,
+          telefono1: item.telefono1,
+          telefono2: item.telefono2,
+          vivienda: item.vivienda,
+          situacion: item.situacion,
+          profesion: item.profesion,
+          empresa: item.empresa,
+          direccion_empresa: item.direccion_empresa,
+          telefono_empresa: item.telefono_empresa,
+          antiguedad_laboral: item.antiguedad_laboral,
+          ingreso_neto_mensual: item.ingreso_neto_mensual,
+          nombre_apellido_2: item.nombre_apellido_2,
+          nif: item.nif,
+          fecha_nacimiento_e: item.fecha_nacimiento_e,
+          direccion_2: item.direccion_2
+        },
+        contratos: []
+      };
+    }
+
+    // Buscar si el contrato ya fue agregado al usuario
+    const usuario = usuariosMap[clienteId];
+    let contrato = usuario.contratos.find(c => c.numero_contrato === numeroContrato);
+
+    // Si no existe, lo agregamos
+    if (!contrato) {
+      contrato = {
+        numero_contrato: numeroContrato,
+        datos_contrato: {
+          codigo_agente: item.codigo_agente,
+          fecha_contrato: item.fecha_contrato,
+          observaciones: item.observaciones,
+          total_financiado: item.total_financiado,
+          total_incluido: item.total_incluido
+        },
+        articulos: [],
+        firmas: {
+          firma_cliente: item.firma_cliente,
+          firma_repartidor: item.firma_repartidor,
+          firma_agente: item.firma_agente
+        }
+      };
+      usuario.contratos.push(contrato);
+    }
+
+    // Agregar el artículo si tiene descripción
+    if (item.descripcion) {
+      contrato.articulos.push({
+        descripcion: item.descripcion,
+        precio: item.precio,
+        cantidad: item.cantidad,
+        fecha_entrega: item.fecha_pago
+      });
+    }
+  });
+
+  return Object.values(usuariosMap);
+}
+
+
 const register = (req, res) => {
   const { username, email, password } = req.body;
 
@@ -101,6 +184,7 @@ Tu código es: ${code}`,
       };
 
       transporter.sendMail(mailOptions, (error) => {
+        console.log(error)
         if (error) return res.status(500).json({ error: "Error enviando correo" });
         return res.status(200).json({ message: "Código enviado" });
       });
@@ -220,8 +304,6 @@ const searchAllData = (req, res) => {
     query += ' AND clientes.nif LIKE ?';
     params.push(`%${nif}%`);
   }
-  console.log(query)
-  console.log(params)
   // Ejecutar la consulta en el modelo
   userModel.searchWithJoin(query, params, (err, results) => {
     console.log(results)
@@ -229,7 +311,8 @@ const searchAllData = (req, res) => {
       console.error('Error buscando datos relacionados:', err);
       return res.status(500).json({ error: 'Error al buscar datos' });
     }
-    res.json(results); // Devuelve todos los datos relacionados en un único objeto
+    const datos = agruparPorUsuarioYContrato(results)
+    res.json(datos); // Devuelve todos los datos relacionados en un único objeto
   });
 };
 

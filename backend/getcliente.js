@@ -14,75 +14,93 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
   })
   .then(res => res.json())
   .then(data => {
+    console.log(data);
+
     if (Array.isArray(data) && data.length > 0) {
-      const cliente = data[0]; // Usamos solo el primer resultado
+      // Limpiar tablas
+      document.querySelector('#clienteTable tbody').innerHTML = '';
+      document.querySelector('#contratoTable tbody').innerHTML = '';
+      document.querySelector('#articulosTable tbody').innerHTML = '';
+      document.querySelector('#pagosTable tbody').innerHTML = '';
+      document.querySelector('#firmasTable tbody').innerHTML = '';
 
-      // CLIENTE
-      document.querySelector('#clienteTable tbody').innerHTML = `
-        <tr class="table-row">
-          <td class="table-cell" data-label="Nombre">${cliente.nombre}</td>
-          <td class="table-cell" data-label="Apellido 1">${cliente.apellido_1}</td>
-          <td class="table-cell" data-label="Apellido 2">${cliente.apellido_2 || ''}</td>
-          <td class="table-cell" data-label="NIF">${cliente.nif}</td>
-          <td class="table-cell" data-label="Teléfono 1">${cliente.telefono1}</td>
-          <td class="table-cell" data-label="Teléfono 2">${cliente.telefono2 || ''}</td>
-          <td class="table-cell" data-label="Localidad">${cliente.localidad}</td>
-          <td class="table-cell" data-label="Provincia">${cliente.provincia}</td>
-          <td class="table-cell" data-label="Fecha Nacimiento">${cliente.fecha_nacimiento ? new Date(cliente.fecha_nacimiento).toLocaleDateString() : ''}</td>
-          <td class="table-cell" data-label="Estado Civil">${cliente.estado_civil}</td>
-          <td class="table-cell" data-label="Número de Hijos">${cliente.numero_hijos}</td>
-          <td class="table-cell" data-label="Dirección">${cliente.direccion}</td>
-          <td class="table-cell" data-label="Código Postal">${cliente.codigo_postal}</td>
-          <td class="table-cell" data-label="Vivienda">${cliente.vivienda}</td>
-          <td class="table-cell" data-label="Situación">${cliente.situacion}</td>
-          <td class="table-cell" data-label="Profesión">${cliente.profesion}</td>
-          <td class="table-cell" data-label="Empresa">${cliente.empresa}</td>
-          <td class="table-cell" data-label="Dirección Empresa">${cliente.direccion_empresa}</td>
-          <td class="table-cell" data-label="Teléfono Empresa">${cliente.telefono_empresa}</td>
-          <td class="table-cell" data-label="Antigüedad Laboral">${cliente.antiguedad_laboral}</td>
-          <td class="table-cell" data-label="Ingreso Neto Mensual">${cliente.ingreso_neto_mensual}</td>
-        </tr>
-      `;
+      data.forEach(entry => {
+        const cliente = entry.datos_usuario;
 
-      // CONTRATO
-      document.querySelector('#contratoTable tbody').innerHTML = `
-        <tr class="table-row">
-          <td class="table-cell" data-label="Número">${cliente.numero_contrato}</td>
-          <td class="table-cell" data-label="Código Agente">${cliente.codigo_agente}</td>
-          <td class="table-cell" data-label="Fecha Contrato">${cliente.fecha_contrato ? new Date(cliente.fecha_contrato).toLocaleDateString() : ''}</td>
-          <td class="table-cell" data-label="Total Financiado">${cliente.total_financiado}</td>
-          <td class="table-cell" data-label="Total Incluido">${cliente.total_incluido}</td>
-          <td class="table-cell" data-label="Observaciones">${cliente.observaciones}</td>
-        </tr>
-      `;
+        // Cliente
+        document.querySelector('#clienteTable tbody').innerHTML += `
+          <tr class="table-row">
+            <td>${cliente.nombre}</td>
+            <td>${cliente.apellido_1}</td>
+            <td>${cliente.apellido_2 || ''}</td>
+            <td>${cliente.nif || cliente.nie}</td>
+            <td>${cliente.telefono1}</td>
+            <td>${cliente.telefono2 || ''}</td>
+            <td>${cliente.localidad}</td>
+            <td>${cliente.provincia}</td>
+            <td>${cliente.fecha_nacimiento ? new Date(cliente.fecha_nacimiento).toLocaleDateString() : ''}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        `;
 
-      // ARTÍCULOS
-      document.querySelector('#articulosTable tbody').innerHTML = `
-        <tr class="table-row">
-          <td class="table-cell" data-label="Descripción">${cliente.descripcion}</td>
-          <td class="table-cell" data-label="Precio">${cliente.precio}</td>
-          <td class="table-cell" data-label="Cantidad">${cliente.cantidad}</td>
-        </tr>
-      `;
+        entry.contratos.forEach(contrato => {
+          const datos = contrato.datos_contrato;
 
-      // PAGOS
-      document.querySelector('#pagosTable tbody').innerHTML = `
-        <tr class="table-row">
-          <td class="table-cell" data-label="Forma de Pago">${cliente.forma_pago || ''}</td>
-          <td class="table-cell" data-label="Cantidad">${cliente.cantidad || ''}</td>
-          <td class="table-cell" data-label="Fecha de Pago">${cliente.fecha_pago ? new Date(cliente.fecha_pago).toLocaleDateString() : ''}</td>
-          <td class="table-cell" data-label="Observaciones">${cliente.observaciones || ''}</td>
-        </tr>
-      `;
+          // Contrato
+          document.querySelector('#contratoTable tbody').innerHTML += `
+            <tr class="table-row">
+              <td>${contrato.numero_contrato}</td>
+              <td>${datos.codigo_agente}</td>
+              <td>${datos.fecha_contrato ? new Date(datos.fecha_contrato).toLocaleDateString() : ''}</td>
+              <td>${datos.total_financiado}</td>
+              <td>${datos.total_incluido}</td>
+              <td>${datos.observaciones || ''}</td>
+            </tr>
+          `;
 
-      // FIRMAS
-      document.querySelector('#firmasTable tbody').innerHTML = `
-        <tr class="table-row">
-          <td class="table-cell" data-label="Firma Cliente">${cliente.firma_cliente || 'No disponible'}</td>
-          <td class="table-cell" data-label="Firma Agente">${cliente.firma_agente || 'No disponible'}</td>
-          <td class="table-cell" data-label="Firma Repartidor">${cliente.firma_repartidor || 'No disponible'}</td>
-        </tr>
-      `;
+          // Artículos
+          if (Array.isArray(contrato.articulos)) {
+            contrato.articulos.forEach(articulo => {
+              document.querySelector('#articulosTable tbody').innerHTML += `
+                <tr class="table-row">
+                  <td>${contrato.numero_contrato}</td>
+                  <td>${articulo.descripcion}</td>
+                  <td>${articulo.precio}</td>
+                  <td>${articulo.cantidad}</td>
+                  <td>${articulo.fecha_entrega ? new Date(articulo.fecha_entrega).toLocaleDateString() : ''}</td>
+                </tr>
+              `;
+            });
+          }
+
+          // Firmas
+          if (contrato.firmas) {
+            document.querySelector('#firmasTable tbody').innerHTML += `
+              <tr class="table-row">
+                <td>${contrato.firmas.firma_cliente || 'No disponible'}</td>
+                <td>${contrato.firmas.firma_agente || 'No disponible'}</td>
+                <td>${contrato.firmas.firma_repartidor || 'No disponible'}</td>
+              </tr>
+            `;
+          }
+
+          // Pagos (si tu backend lo devuelve después)
+          if (Array.isArray(contrato.pagos)) {
+            contrato.pagos.forEach(pago => {
+              document.querySelector('#pagosTable tbody').innerHTML += `
+                <tr class="table-row">
+                  <td>${pago.forma_pago || ''}</td>
+                  <td>${pago.cantidad || ''}</td>
+                  <td>${pago.fecha_pago ? new Date(pago.fecha_pago).toLocaleDateString() : ''}</td>
+                  <td>${pago.observaciones || ''}</td>
+                </tr>
+              `;
+            });
+          }
+        });
+      });
 
     } else {
       alert('No se encontraron resultados.');
